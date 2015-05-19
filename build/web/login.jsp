@@ -19,8 +19,17 @@
                 <div class="col offset-l4 l4 offset-m3 m6 s10 offset-s1">
                     <div class="card center-align" style="margin-top: 30%">
                     <div class="card-content">
-                      <span class="card-title black-text lighten-2">Login</span>
-                      
+                        <div>
+                            <span class="card-title black-text lighten-2">Login</span>
+                        </div>
+                        <div class="input-field col" style="margin-top: 60px">
+                          <input id="num_cartao" type="text" class="validate">
+                          <label for="last_name">Nº do Cartão</label>
+                        </div>
+                        <div class="input-field col s12">
+                          <input id="password" type="password" class="validate">
+                          <label for="password">Password</label>
+                        </div>
                     </div>
                     <div class="card-action row">
                         <div class="col s6">
