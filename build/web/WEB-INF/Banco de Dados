@@ -1,0 +1,82 @@
+Banco de Dados
+
+    login: gerente
+    senha: medacash
+
+
+CREATE TABLE Clientes (
+    id_cliente INT INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    nome VARCHAR(255) NOT NULL,
+    cartao VARCHAR(50) NOT NULL,
+    cpf VARCHAR(50) NOT NULL,
+    senha VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE Correntes (
+    id_corrente INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    id_cliente INT NOT NULL,
+    id_saldo INT NOT NULL,
+    conta VARCHAR(50) NOT NULL,
+    reg_date TIMESTAMP,
+    Foreign Key (id_cliente) REFERENCES Clientes(id_cliente),
+    Foreign Key (id_saldo) REFERENCES Clientes(id_saldo)
+);
+
+create table Saldo (
+    id_saldo INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    id_cliente INT NOT NULL,
+    saldo_corrente FLOAT,
+    saldo_poupanca FLOAT,
+    reg_date TIMESTAMP NOT NULL,
+    Foreign Key (id_cliente) REFERENCES Clientes(id_cliente)
+)
+
+CREATE TABLE Poupancas (
+    id_saldo INT NOT NULL,
+    id_poupanca INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    id_cliente INT NOT NULL,
+    conta VARCHAR(50) NOT NULL,
+    juros FLOAT NOT NULL,
+    reg_date TIMESTAMP,
+    Foreign Key (id_cliente) REFERENCES Clientes(id_cliente),
+    Foreign Key (id_saldo) REFERENCES Clientes(id_saldo)
+);
+
+CREATE TABLE Depositos (
+    id_deposito INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    id_favorecido INT NOT NULL,
+    valor FLOAT NOT NULL,
+    reg_date TIMESTAMP,
+    Foreign Key (id_favorecido) REFERENCES Clientes(id_cliente)
+);
+
+CREATE TABLE Saques (
+    id_saque INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    id_cliente INT NOT NULL,
+    valor FLOAT NOT NULL,
+    reg_date TIMESTAMP,
+    Foreign Key (id_cliente) REFERENCES Clientes(id_cliente)
+);
+
+CREATE TABLE Transferencias (
+    id_transferencia INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    id_cliente INT NOT NULL,
+    id_favorecido INT NOT NULL,
+    valor FLOAT NOT NULL,
+    Foreign Key (id_cliente) REFERENCES Clientes(id_cliente),
+    Foreign Key (id_favorecido) REFERENCES Clientes(id_cliente),
+    reg_date TIMESTAMP
+);
+
+CREATE TABLE Investimentos (
+    id_investimento INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome_investimento VARCHAR(255) NOT NULL,
+    juros INT(5,2) NOT NULL,
+    reg_date TIMESTAMP
+); -- TALVEZ NÃO HAJA NECESSIDADE
+
+CREATE TABLE invest_cliente (
+   id_investimento int(6) FOREIGN KEY REFERENCES Investimentos(id_investimento),
+   id_cliente INT(6) FOREIGN KEY REFERENCES Clientes(id_cliente)
+); -- TALVEZ NÃO HAJA NECESSIDADE
+
