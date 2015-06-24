@@ -38,8 +38,8 @@
                             <div class="input-field col s8 offset-s2 center" style="margin-top: 10%">
                                 <input id="num_cartao" name="num_cartao" type="text" class="validate">
                                 <label for="num_cartao">Nº Cart&atilde;o</label>
-                                <div class="input-field col s2 offset-s5">
-                                        <input id="num_senha" name="num_senha"  type="password" maxlength="6" class="validate" style="font-size: 50px">
+                                <div class="input-field col s4 offset-s4">
+                                        <input id="num_senha" name="num_senha"  type="password" maxlength="5" class="validate" style="font-size: 50px">
                                         <label for="num_senha">Senha</label>
                                 </div>
                                 <button class="btn waves-effect waves-light" type="submit" name="acessar">Acessar

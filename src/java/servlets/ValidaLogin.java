@@ -55,8 +55,17 @@ public class ValidaLogin extends HttpServlet {
             HttpSession userSession = request.getSession();
             userSession.setAttribute("userSession", num_cartao);
             userSession.setMaxInactiveInterval(1200);
-            
-            RequestDispatcher redireciona = getServletContext().getRequestDispatcher("/menu.jsp");
+            if( num_cartao.equals("000") ){
+                RequestDispatcher redireciona = getServletContext().getRequestDispatcher("/menu.jsp");
+                redireciona.forward(request, response);
+            }
+            else{
+                RequestDispatcher redireciona = getServletContext().getRequestDispatcher("/menu.jsp");
+                redireciona.forward(request, response);
+            }
+        }
+        else{
+            RequestDispatcher redireciona = getServletContext().getRequestDispatcher("/index.jsp");
             redireciona.forward(request, response);
         }
     }

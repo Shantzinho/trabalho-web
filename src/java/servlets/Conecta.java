@@ -41,19 +41,18 @@ public class Conecta extends HttpServlet {
     
     public boolean verificaLogin(String cartao, String senha) 
             throws SQLException{
-        boolean existe = false;
         
-        PreparedStatement sql = conn.prepareStatement("select * from Clientes where senha = ? and cartao = ? ");
-        sql.setString(1, senha);
-        sql.setString(2, cartao);
-        ResultSet resultado = sql.executeQuery();
-
-        while(resultado.next()){
-            return existe = true;
+        try (PreparedStatement sql = conn.prepareStatement("select * from Clientes where senha = ? and cartao = ? ")) {
+            sql.setString(1, senha);
+            sql.setString(2, cartao);
+            ResultSet resultado = sql.executeQuery();
+            
+            if(resultado.next()){
+                sql.close();
+                return true;
+            }
         }
-        
-        sql.close();
-        return existe;
+        return false;
     }
     
     @Override

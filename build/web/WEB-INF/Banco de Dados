@@ -5,7 +5,7 @@ Banco de Dados
 
 
 CREATE TABLE Clientes (
-    id_cliente INT INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    id_cliente INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     nome VARCHAR(255) NOT NULL,
     cartao VARCHAR(50) NOT NULL,
     cpf VARCHAR(50) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE Correntes (
     conta VARCHAR(50) NOT NULL,
     reg_date TIMESTAMP,
     Foreign Key (id_cliente) REFERENCES Clientes(id_cliente),
-    Foreign Key (id_saldo) REFERENCES Clientes(id_saldo)
+    Foreign Key (id_saldo) REFERENCES Saldo(id_saldo)
 );
 
 create table Saldo (
@@ -39,7 +39,7 @@ CREATE TABLE Poupancas (
     juros FLOAT NOT NULL,
     reg_date TIMESTAMP,
     Foreign Key (id_cliente) REFERENCES Clientes(id_cliente),
-    Foreign Key (id_saldo) REFERENCES Clientes(id_saldo)
+    Foreign Key (id_saldo) REFERENCES Saldo(id_saldo)
 );
 
 CREATE TABLE Depositos (
